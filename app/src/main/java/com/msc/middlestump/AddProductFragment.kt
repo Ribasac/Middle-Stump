@@ -41,7 +41,7 @@ class AddProductFragment : Fragment() {
 
         var pcontext: Context = container!!.context
 
-        var imageBitmap: Bitmap = null!!
+        var imageBitmap: Bitmap? = null
 
         val imgProduct : ImageView = frView.findViewById(R.id.productImageEnter)
         val button: Button = frView.findViewById(R.id.productButton)
@@ -91,7 +91,7 @@ class AddProductFragment : Fragment() {
     }
 
 
-    private fun saveImageToStorage(scontext: Context, bitmap: Bitmap, fileNumber: Int)
+    private fun saveImageToStorage(scontext: Context, bitmap: Bitmap?, fileNumber: Int)
     {
         val contextWrapper: ContextWrapper = ContextWrapper(scontext)
         val dir: File = contextWrapper.getDir("productImages", Context.MODE_PRIVATE)
@@ -101,7 +101,7 @@ class AddProductFragment : Fragment() {
             var fos : FileOutputStream? = null
             try {
                 fos = FileOutputStream(file)
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, fos)
                 fos.flush()
                 fos.close()
             }
