@@ -53,14 +53,42 @@
             app:boxStrokeWidth="3dp"
             app:boxStrokeWidthFocused="3dp"
             >
-        <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pNameEnter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1"
-            />
+            android:id="@+id/costEnter"
+            android:layout_margin="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@id/productNameEnter"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="   Product Cost"
+            app:boxCornerRadiusBottomEnd="32dp"
+            app:boxCornerRadiusBottomStart="32dp"
+            app:boxCornerRadiusTopEnd="32dp"
+            app:boxCornerRadiusTopStart="32dp"
+            app:boxStrokeWidth="3dp"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="3dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pCostEnter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -68,7 +96,7 @@
             android:id="@+id/mRPEnter"
             android:layout_margin="16dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintTop_toBottomOf="@id/productNameEnter"
+            app:layout_constraintTop_toBottomOf="@id/costEnter"
             app:layout_constraintStart_toStartOf="parent"
             android:hint="   Product MRP"
             app:boxCornerRadiusBottomEnd="32dp"
@@ -80,6 +108,7 @@
             app:boxStrokeWidthFocused="3dp"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pMRPEnter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -106,6 +135,7 @@
             app:boxStrokeWidthFocused="3dp"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pWholesaleEnter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -117,6 +147,7 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="256dp"
             android:layout_height="64dp"
+            android:id="@+id/productButton"
             app:layout_constraintTop_toBottomOf="@id/wRateEnter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
