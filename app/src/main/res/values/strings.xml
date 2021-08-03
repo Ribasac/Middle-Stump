@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Middle Stump</string>
+    <string name="n1">Nivia C120</string>
+    <string name="n2">Nivia Attacker</string>
+    <string name="s1">Spectra</string>
+    <string name="s2">Attacker</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
