@@ -2,6 +2,7 @@ package com.msc.middlestump
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
@@ -29,7 +30,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, "productRecord
         cv.put("cost",cost)
         cv.put("mrp",mrp)
         cv.put("wholesale",wholesale)
-        cv.put("fileNumber",fileNo)
+        cv.put("fileNumber",fileNo.toString())
 
         val result: Long = db.insert("productRecord",null,cv)
 
@@ -41,6 +42,18 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, "productRecord
         {
             Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun readAllData(): Cursor
+    {
+        val sql: String = "SELECT * FROM productRecord"
+        val db: SQLiteDatabase = this.readableDatabase
+        var cursor: Cursor? = null
+        if(db!=null)
+        {
+            cursor = db.rawQuery(sql, null)
+        }
+        return cursor!!
     }
 
 }

@@ -1,5 +1,6 @@
 package com.msc.middlestump
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -21,9 +22,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-
         val mainFrag : HomeFragment = HomeFragment()
-        val secondFrag : AddProductFragment = AddProductFragment()
+        val secondFrag : AddProductFragment = AddProductFragment(this)
 
         setCurrentFragment(mainFrag, "Home")
 

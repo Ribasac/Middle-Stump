@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,9 +26,11 @@ import java.io.IOException
 import java.lang.Exception
 import javax.xml.transform.Source
 
-class AddProductFragment : Fragment() {
+class AddProductFragment(context: Context) : Fragment() {
 
-    var fileNo : Int = 0;
+    val pref : SharedPreferences = context.getSharedPreferences("com.msc.middlestump", Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor = pref.edit()
+    var fileNo : Int = pref.getInt("fileNo", 0);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,24 +67,33 @@ class AddProductFragment : Fragment() {
 
         }
 
-
-        val pref : SharedPreferences = pcontext.getSharedPreferences(pcontext.packageName.toString(), Context.MODE_PRIVATE)
         fileNo = pref.getInt("fileNo", 0)
 
         button.setOnClickListener {
 
-            saveImageToStorage(pcontext, imageBitmap, fileNo)
+            if(imageBitmap!=null) {
 
-            val db : DatabaseHelper = DatabaseHelper(pcontext)
-            db.addProduct(productName.text.toString().trim(), productCost.text.toString().trim()
-            ,productMRP.text.toString().trim(),productWholesale.text.toString().trim(), fileNo)
+                saveImageToStorage(pcontext, imageBitmap, fileNo)
+
+                val db: DatabaseHelper = DatabaseHelper(pcontext)
+                db.addProduct(
+                    productName.text.toString().trim(),
+                    productCost.text.toString().trim(),
+                    productMRP.text.toString().trim(),
+                    productWholesale.text.toString().trim(),
+                    fileNo
+                )
 
 
-            fileNo++
+                fileNo++
 
-            val pref : SharedPreferences = pcontext.getSharedPreferences(pcontext.packageName.toString(), Context.MODE_PRIVATE)
-            val editor: SharedPreferences.Editor = pref.edit()
-            editor.putInt("fileNo", fileNo)
+                editor.putInt("fileNo", fileNo)
+                editor.commit()
+            }
+            else
+            {
+                Toast.makeText(context, "Please Add an Image", Toast.LENGTH_SHORT).show()
+            }
 
         }
 
